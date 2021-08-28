@@ -1,0 +1,84 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+    Mahmoud Website
+{% endblock %}
+
+{% block navbar %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='stylesheets/card_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='stylesheets/stylesheet.css') }}">
+    <nav class="navbar navbar-fixed-top card" style="background-color: rgb(47, 48, 49);">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('home_view') }}"><img class="card btnn" src=" {{ url_for('static',filename='images/modeh.png') }}" style="border-radius: 50%; width: 140px;" alt="Modeh"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="card btnn"><a href="{{ url_for('home_view') }}">Courses</a></li>
+                    <li class="card btnn"><a href="{{ url_for('about_me_view') }}">About Me</a></li>
+                    {% if current_user.is_anonymous or current_user.is_admin == false  %}
+
+                    {% else %}
+                    <li class="card btnn"><a href="{{ url_for('admin_view') }}">Admin</a></li>
+                    {% endif %}
+                   
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
+                    <li class="card btnn"><a href="{{ url_for('login_view') }}">Login</a></li>
+                    {% else %}
+                    <li class="card btnn"><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="container box_container card" align="center" class="card btnn" style="border-radius: 50%;" ><h1 class="card btnn" style="border-radius: 100%;">Learning By Practicing</h1></div>
+<div class="container box_container" style="margin-top: 3%;" align="center">
+    <div class="row">
+        <h1 class="card"  style="border-radius: 50%; width: 100px; font-size: 20px;">Courses</h1>
+        <hr>
+        {% for course in courses %}
+        <div class="column">
+            <div class="card" style="padding: 20px 20px 20px 20px; margin: 20px 20px 20px 20px;">
+                <hr >
+                <strong class="card"  style="border-radius: 50%; width: 100px; font-size: 20px;"> {{ course.name }} </strong>
+                <hr >
+            
+                <a class="card btnn"  id="{{course.public_id}}"   href="{{ url_for('course_lessons',public_id=course.public_id, description=course.description ) }}">Lessons</a> 
+                <hr >
+                {% if current_user.is_anonymous or current_user.is_admin == false  %}
+
+                {% else %}
+                <button class="btnn" onclick="copyLink('{{course.public_id}}')" >Copy ID</button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+</div>
+
+
+<script>
+    function copyLink(a_string){
+        var input = document.createElement('input')
+        input.id="__copyText__";
+        input.value = a_string; 
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        var txt = input.value
+        input.remove()
+        alert("OK COPIED: '"+txt+"'")
+    }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "home_template.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<script type=text/javascript src="{{url_for('static', filename='javascript/jquery-3.6.0.min.js') }}"></script>
+
+
+<div id="fullContainer" class="container box_container" align="center">
+        <div id="backbtndiv" align="center">
+            <div class="row">
+                <button id="lessonsbtn" class="card btnn" style="border-radius: 50%;">Lessons</button>
+            </div>  
+        </div>
+        <hr>
+        <div class="container" align="center">
+            <div class="row">
+                <h1>{{course_description}}</h1>
+            </div>  
+        </div>
+    <div id="displaydiv">
+    <div id="rowdiv1" class="row">
+        {% for lesson in lessons %} 
+        <div  class="column">
+            <div   class="card" style="padding: 20px 20px 20px 20px; margin: 20px 20px 20px 20px;">
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                {{ lesson.name }}
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                <button class="card btnn" id="displaybtn" >Watch Video
+                    <script>
+                            $(document).ready(function(){
+                            $("#displaybtn").click(function(){
+                                $("#rowdiv1").load("{{ url_for('video_lesson_view',video_link=lesson.video_link) }}");
+                                document.getElementById("lessonsbtn").innerHTML = "Back";
+                                  });
+                              });
+                              $(document).ready(function(){
+                                $("#lessonsbtn").click(function(){
+
+                                window.location.replace("{{ url_for('course_lessons',public_id=lesson.course_id,description=course_description) }}");            
+                            });
+                                });
+
+                            
+                    </script>    
+                </button> 
+                {% if current_user.is_anonymous or current_user.is_admin == false  %}
+
+                {% else %}
+                <h4>Lesson ID:</h4><h5 id="{{lesson.public_id}}">{{ lesson.public_id }}</h5> 
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+                <button class="card btnn" name="copy" onclick="clip_a('{{lesson.public_id}}')">Copy</button>
+                {% endif %}
+            </div>
+        </div>    
+
+
+        {% endfor %}
+    </div>
+    </div>
+<script>
+
+$(document).ready(function(){
+    $('.classloader.').click(function(){
+        $('#contenthere').load('/includes/about-info.html');
+    });
+})
+</script>
+ 
+
+</div>
+
+<script>
+    function copyLink(a_string){
+        var input = document.createElement('input')
+        input.id="__copyText__";
+        input.value = a_string;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        var txt = input.value
+        input.remove()
+        console.log("OK COPIED: '"+txt+"'")
+    }
+    function clip_a(aId){
+       return copyLink(document.getElementById(aId).innerText)
+    }
+
+
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div>
+    <h1>Add Course:</h1>
+    <form action="{{ url_for('course_view') }}" method="POST">
+    {{ wtf.quick_form(add_form) }}
+    </form>
+</div>
+
+<div>
+    <h1>Delete Course:</h1>
+    <form action="{{ url_for('course_view') }}" method="POST">
+        {{ wtf.quick_form(delete_form) }}
+        </form>
+
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+        <li class="card" style="color: darkred;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+</div>
+
+{% endblock %}

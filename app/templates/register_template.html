@@ -1,0 +1,17 @@
+{% extends "home_template.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div class="container box_container" align="center" >
+    <div align="center">
+        <h1 class="card" style="border-radius: 50%; width: 30%;">MOdeh</h1></a>
+    </div>
+
+    <h1 style="color:darkgreen">Create New User</h1>
+    <div class="row">
+        
+                {{ wtf.quick_form(form) }}
+       
+    </div>    
+</div>
+{% endblock %}

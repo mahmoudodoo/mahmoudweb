@@ -1,0 +1,31 @@
+{% extends "home_template.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+<div class="container box_container" align="center">
+
+    <div align="center">
+        <h1 class="card" style="border-radius: 50%; width: 30%;">MOdeh</h1></a>
+    </div>
+
+    <h1 style="color:darkgreen">Login Modeh!</h1>
+    <div class="row">
+        
+                {{ wtf.quick_form(form) }}
+    
+    </div>   
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="flashes">
+        {% for message in messages %}
+        <li class="card" style="color: darkred;">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+    <br>
+    <p>Create New User? <a href="{{ url_for('register_view') }}">Click to Register!</a></p> 
+</div>
+
+{% endblock %}
