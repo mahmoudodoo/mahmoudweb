@@ -14,7 +14,7 @@ bootstrap = Bootstrap(app)
 login = LoginManager(app)
 login.login_view = 'login'
 
-db.create_all()
+
 from app.views import home_view, login_view, course_view, admin_view, register_view, lesson_view, video_lesson_view, about_me_view
 from app.models import course_model, lesson_model,user_model
 from app.api import user_api,course_api,lesson_api
