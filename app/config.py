@@ -7,7 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI ='postgresql://zhbzdrctkl:HI4C0387HT76VHCU$@mahmoudweb-server.postgres.database.azure.com/postgres'
+    SQLALCHEMY_DATABASE_URI ='postgresql://wottrysfll:5EQ508PPYYFW8033$@mahmoudweb-server.postgres.database.azure.com/postgres'
     #SQLALCHEMY_DATABASE_URI ='postgresql://modoo:admin@localhost/mahmoudweb'
     SQLALCHEMY_TRACK_MODIFICATIONS= False
     POSTS_PER_PAGE = 25
