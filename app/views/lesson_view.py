@@ -3,7 +3,7 @@ from flask import render_template,flash, redirect,url_for,Flask
 from app.forms.lesson_form import AddLessonForm,DeleteLessonForm
 from flask_login import login_required
 import requests
-
+host_name = 'https://mahmoudweb.azurewebsites.net/'
 @app.route('/lesson', methods=['GET', 'POST'])
 def lesson_view():
     add_form = AddLessonForm()
@@ -16,7 +16,7 @@ def lesson_view():
             'video_link':video_link,
             'course_id':lesson_course.public_id
                 }
-        r= requests.post('http://127.0.0.1:5000/lessons',json=data)
+        r= requests.post(f'{host_name}lessons',json=data)
         if r.ok:
             print('Lesson has been added!!')
             return redirect(url_for('home_view'))
@@ -25,7 +25,7 @@ def lesson_view():
     delete_form = DeleteLessonForm()
     if delete_form.validate_on_submit():
         lesson_id = delete_form.lesson_id.data
-        r= requests.delete('http://127.0.0.1:5000/lessons/{}'.format(lesson_id))
+        r= requests.delete(f'{host_name}lessons/{lesson_id}')
         if r.ok:
             return redirect(url_for('home_view'))
         if r.status_code == 404:
