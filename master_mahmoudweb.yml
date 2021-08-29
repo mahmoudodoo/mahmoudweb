@@ -1,5 +1,8 @@
-variables:
-  environmentName: "dev"
-  vmImageName: "ubuntu-latest"
-  webAppName: "mahmoudweb"
-
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - master
