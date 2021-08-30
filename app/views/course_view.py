@@ -4,6 +4,7 @@ from flask import render_template,flash, redirect,request,send_from_directory,ur
 from app.forms.course_form import AddCourseForm,DeleteCourseForm
 import requests
 host_name = 'https://mahmoudweb.azurewebsites.net/'
+#host_name = 'http://127.0.0.1:5000/'
 @app.route('/course', methods=['GET', 'POST'])
 def course_view():
     add_form = AddCourseForm()
@@ -40,7 +41,7 @@ def course_lessons(public_id):
             data ={}
             for k, v in request.args.items():
                 data[k] = v
-        except KeyError:
+        except:
             output_dict = {}
 
     return render_template('course_lessons_template.html',lessons=output_dict, course_description=data['description'])

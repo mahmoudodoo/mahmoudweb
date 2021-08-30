@@ -7,6 +7,7 @@ from app.models.user_model import User
 from app.forms.register_form import RegistrationForm
 import requests
 host_name = 'https://mahmoudweb.azurewebsites.net/'
+#host_name = 'http://127.0.0.1:5000/'
 @app.route('/register',methods=['GET', 'POST'])
 def register_view():
     form = RegistrationForm()
