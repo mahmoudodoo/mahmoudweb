@@ -7,7 +7,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI ='mssql+pymssql://modeh:201211212lpl,]@mahmoud-elearning-server.database.windows.net/elearning'
+    SQLALCHEMY_DATABASE_URI ='postgresql://ieddwzefyn:V8353B58L65T5B23$@melearning-server.database.windows.net/postgres'
     SQLALCHEMY_TRACK_MODIFICATIONS= False
     POSTS_PER_PAGE = 25
     STATIC_PATH = os.path.join(basedir,'static')

@@ -3,8 +3,8 @@ from app import app
 from flask import render_template,flash, redirect,request,send_from_directory,url_for,Flask
 from app.forms.course_form import AddCourseForm,DeleteCourseForm
 import requests
-host_name = 'https://mahmoudweb.azurewebsites.net/'
-#host_name = 'http://127.0.0.1:5000/'
+#host_name = 'https://mahmoudweb.azurewebsites.net/'
+host_name = 'http://127.0.0.1:5000/'
 @app.route('/course', methods=['GET', 'POST'])
 def course_view():
     add_form = AddCourseForm()
