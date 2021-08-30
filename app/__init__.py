@@ -14,11 +14,16 @@ bootstrap = Bootstrap(app)
 login = LoginManager(app)
 login.login_view = 'login'
 
-db.init_app(app)
-migrate.init_app(app, db)
-db.create_all()
+
 
 
 from app.views import home_view, login_view, course_view, admin_view, register_view, lesson_view, video_lesson_view, about_me_view
 from app.models import course_model, lesson_model,user_model
 from app.api import user_api,course_api,lesson_api
+
+
+
+if __name__ == 'main':
+    db.init_app(app)
+    migrate.init_app(app, db)
+    db.create_all()
