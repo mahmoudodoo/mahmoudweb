@@ -7,10 +7,10 @@ host_name = 'https://melearning.azurewebsites.net/'
 #host_name = 'http://127.0.0.1:5000/'
 @app.route('/', methods=['GET', 'POST'])
 def home_view():
-    # if request.method == 'GET':
-    #     r = requests.get(f'{host_name}courses')
-    #     try:
-    #         courses = r.json()['courses']
-    #     except:
-    #         courses = {}    
+    if request.method == 'GET':
+        r = requests.get(f'{host_name}courses')
+        try:
+            courses = r.json()['courses']
+        except:
+            courses = {}    
     return render_template('home_template.html',courses=courses)

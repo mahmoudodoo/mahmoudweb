@@ -38,3 +38,5 @@ Werkzeug
 WTForms
 WTForms-SQLAlchemy
 whitenoise
+flask_script
+flask_migrate
