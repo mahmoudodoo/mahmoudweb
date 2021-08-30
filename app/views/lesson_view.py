@@ -3,8 +3,8 @@ from flask import render_template,flash, redirect,url_for,Flask
 from app.forms.lesson_form import AddLessonForm,DeleteLessonForm
 from flask_login import login_required
 import requests
-#host_name = 'https://mahmoudweb.azurewebsites.net/'
-host_name = 'http://127.0.0.1:5000/'
+host_name = 'https://melearning.azurewebsites.net/'
+#host_name = 'http://127.0.0.1:5000/'
 @app.route('/lesson', methods=['GET', 'POST'])
 def lesson_view():
     add_form = AddLessonForm()
